@@ -8,10 +8,14 @@ int main(int argc, char *argv[]) {
     } s;
 
     s.authorized = 0;
-    strncpy(s.buf, argv[1], sizeof(s.buf) - 1);
-    s.buf[sizeof(s.buf) - 1] = '\0';   // strncpy may not terminate
+    strcpy(s.buf, argv[1]);   // no length check
 
     printf("buf        = %s\n", s.buf);
     printf("authorized = %d\n", s.authorized);
+
+    if (s.authorized)
+        printf("Access granted!\n");
+    else
+        printf("Access denied.\n");
     return 0;
 }
